@@ -12,7 +12,13 @@ contract DappToken {
         balanceOf[msg.sender] = _initialSupply;
         totalSupply = _initialSupply;
     }
-    // Set the total number of tokens
-    // Read the total number of tokens
-    // allocate the initial supply
+    
+    // Transfer
+    
+    function transfer(address _to, uint256 _value) public returns (bool success) {
+        // Expection if account doesn't have enough
+        require(balanceOf[msg.sender] >= _value);
+        // Return a boolean
+        // Transfer Event
+    }
 }
