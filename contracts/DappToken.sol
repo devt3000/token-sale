@@ -6,6 +6,12 @@ contract DappToken {
     string public standard = "DApp Token v1.0";
     uint256 public totalSupply;
 
+    event Transfer(
+        address indexed _from,
+        address indexed _to,
+        uint256 _value
+    );
+
     mapping(address => uint256) public balanceOf;
 
     function DappToken (uint256 _initialSupply) public {
@@ -20,7 +26,8 @@ contract DappToken {
         // Transfer the balance
         balanceOf[msg.sender] -= _value;
         balanceOf[_to] += _value;
+
+        Transfer(msg.sender, _to, _value);
         // Return a boolean
-        // Transfer Event
     }
 }
