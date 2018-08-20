@@ -16,8 +16,10 @@ contract DappToken {
     // Transfer
     
     function transfer(address _to, uint256 _value) public returns (bool success) {
-        // Expection if account doesn't have enough
         require(balanceOf[msg.sender] >= _value);
+        // Transfer the balance
+        balanceOf[msg.sender] -= _value;
+        balanceOf[_to] += _value;
         // Return a boolean
         // Transfer Event
     }
