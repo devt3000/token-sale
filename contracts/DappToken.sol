@@ -11,7 +11,12 @@ contract DappToken {
         address indexed _to,
         uint256 _value
     );
-    //trnafer event
+
+    event Approval(
+        address indexed _owner,
+        address indexed _spender,
+        uint256 _value
+    );
 
     mapping(address => uint256) public balanceOf;
     // allowance
@@ -34,8 +39,10 @@ contract DappToken {
     }
 
     // approve
-    function approve(address spender, uint256 _value) public returns (bool success) {
+    function approve(address _spender, uint256 _value) public returns (bool success) {
         
+        Approval(msg.sender, _spender, _value);
+
         return true;
     }
 
