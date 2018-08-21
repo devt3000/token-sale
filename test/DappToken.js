@@ -90,7 +90,7 @@ contract('DappToken', function(accounts) {
             // Try transferring something larger than the sender's balance
             return tokenInstance.transferFrom(fromAccount, toAccount, 9999, { from: spendingAccount });
         }).then(assert.fail).catch(function(error) {
-            assert(error.message.indexOf('revert') >= 0, 'cannot transfer vaue greater than balance');
+            assert(error.message.indexOf('revert') >= 0, 'cannot transfer value greater than balance');
         });
     })
 })
