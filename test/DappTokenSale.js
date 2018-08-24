@@ -77,7 +77,9 @@ contract('DappTokenSale', function(accounts) {
             // End sale as admin
             return tokenSaleInstance.endSale({ from: admin });
         }).then(function(receipt) {
-            // receipt      
+            return tokenInstance.balanceOf(admin);
+        }).then(function(balance) {
+            assert.equal(balance.toNumber(), 999990, 'returns all unsold dapp tokens to admin');
         })
     })
 });
