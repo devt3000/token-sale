@@ -36,6 +36,7 @@ contract DappTokenSale {
     // Ending Token DappTokenSale
     function endSale() public {
         require(msg.sender == admin);
+        require(tokenContract.transfer(admin, tokenContract.balanceOf(this)));
         // Transfer remaining dapp tokens to admin
         // Destroy contract
     }
