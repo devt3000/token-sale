@@ -32,4 +32,11 @@ contract DappTokenSale {
 
         Sell(msg.sender, _numberOfTokens);
     }
+
+    // Ending Token DappTokenSale
+    function endSale() public {
+        require(msg.sender == admin);
+        // Transfer remaining dapp tokens to admin
+        // Destroy contract
+    }
 }
