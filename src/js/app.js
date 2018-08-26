@@ -1,6 +1,7 @@
 App = {
 
     web3Provider: null,
+    contracts: {},
 
     init: function() {
         console.log("App initialized...")
@@ -16,6 +17,18 @@ App = {
             App.web3Provider = new Web3.providers.HttpProvider('http://localhost:7545');
             web3 = new Web3(App.web3Provider);
         }
+
+        return App.initContracts();
+    },
+
+    initContracts: function() {
+        $.getJSON("DappTokenSale.json", function(dappTokenSale) {
+            App.contracts.DappTokenSale = TruffleContract(dappTokenSale);
+            App.contracts.DappTokenSale.setProvider(App.web3Provider);
+            App.contracts.DappTokenSale.deployed().then(function(dappTokenSale) {
+                console.log("Dapp Token Sale Address:", dappTokenSale.address);
+            });
+        })
     }
 }
 
