@@ -2,6 +2,7 @@ App = {
 
     web3Provider: null,
     contracts: {},
+    account: '0x0',
 
     init: function() {
         console.log("App initialized...")
@@ -35,7 +36,19 @@ App = {
                 App.contracts.DappToken.deployed().then(function(dappToken) {
                     console.log("Dapp Token Address:", dappToken.address);
                 });
+                return App.render();
             });
+        })
+    },
+
+    render: function() {
+        // Load account data
+        web3.eth.getCoinbase(function(err, account) {
+            if(err === null) {
+                console.log("account:", account);
+                App.account = account;
+                $('#accountAddress').html("Your Account:" + account);
+            }
         })
     }
 }
